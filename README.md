@@ -1,5 +1,5 @@
 # PoseDetector
-A program that detects the 33 unique points on your body!
+A program that detects the 33 unique points on your body  on a live stream camera!
 
 It uses mediapipe (by Google) and its pretrained models with a data set of thousands of body photos to determine the unique 33 points in our body.
 
