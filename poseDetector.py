@@ -64,7 +64,7 @@ def poseDetector():
         st.write("3. Reload your page!")
 
     st.subheader("Testimonials")
-    st.video("testimonials.mp4")
+    st.image("testimonials.gif")
     st.caption("MediaPipe ML Solutions, https://google.github.io/mediapipe/solutions/pose.html")
 
 if __name__ == "__main__":
