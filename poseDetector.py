@@ -1,10 +1,17 @@
+#Title: POSE DETECTOR
+#Developer: Vishwas Puri
+#Purpose: A program that detects the 33 unique points on your body  on a live stream camera!
+
+#It uses media pipe (by Google) and its pre-trained models with a data set of thousands of body photos to determine the unique 33 points in our body.
+
+#This program is made using python supported by streamlit.
 import streamlit as st
 import mediapipe as mp
 import cv2
 st.set_page_config(layout="wide")
 col = st.empty()
 
-
+#defining mediapipe's inbuilt pose recogignition models
 mpPose = mp.solutions.pose
 pose = mpPose.Pose()
 mpDraw = mp.solutions.drawing_utils
@@ -31,8 +38,9 @@ def poseDetector():
     class OpenCVVideoProcessor(VideoProcessorBase):
         def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
             img = frame.to_ndarray(format="bgr24")
-
+            # converting image to rgb
             imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            # draw points over the 33 recognized pose points
             results = pose.process(imgRGB)
             mpDraw.draw_landmarks(
                 img,
@@ -41,7 +49,7 @@ def poseDetector():
 
             return av.VideoFrame.from_ndarray(img, format="bgr24")
 
-
+    # setting up streamlit camera configuration
     webrtc_ctx = webrtc_streamer(
         key="opencv-filter",
         mode=WebRtcMode.SENDRECV,
